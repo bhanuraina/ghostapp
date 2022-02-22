@@ -83,3 +83,4 @@ resource "aws_security_group" "ghost_asg_sg" {
   tags = {
     Name = "Allow HTTP Security Group"
   }
+}
