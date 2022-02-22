@@ -13,10 +13,6 @@ variable "region" {
   default = "eu-west-3"
 }
 
-variable "vpc_cidr" {
-  type = string
-}
-
 variable "ec2_instance_type" {
 default = "t3.micro"
 }
