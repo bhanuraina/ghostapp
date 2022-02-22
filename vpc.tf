@@ -110,8 +110,8 @@ resource "aws_route_table_association" "private" {
   route_table_id = aws_route_table.private.id
 }
 
-# Create a default security for the vpc
-resource "aws_security_group" "default" {
+# Create a ghost_asg_sg security for the vpc
+resource "aws_security_group" "ghost_asg_sg" {
   name        = "${var.name}-default-sg"
   description = "Default security group to allow inbound/outbound from the VPC"
   vpc_id      = aws_vpc.vpc.id
