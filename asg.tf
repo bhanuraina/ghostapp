@@ -52,7 +52,7 @@ resource "aws_security_group" "elb_http" {
 }
 
 resource "aws_autoscaling_group" "web" {
-  name = "${aws_launch_configuration.web.name}-asg"
+  name = "${aws_launch_configuration.ghost_lc.name}-asg"
 
   min_size             = 1
   desired_capacity     = 2
