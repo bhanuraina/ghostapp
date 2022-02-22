@@ -36,3 +36,6 @@ variable "availability_zones" {
 variable "private_subnets_cidr" {
   type = list(string)
 }
+variable "ec2_instance_type" {
+default = "t3.micro"
+}
