@@ -39,3 +39,7 @@ variable "private_subnets_cidr" {
 variable "ec2_instance_type" {
 default = "t3.micro"
 }
+
+variable "mysql_password" {
+default = "Ghost#1234"
+}
