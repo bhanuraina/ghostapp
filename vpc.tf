@@ -1,136 +1,85 @@
-resource "aws_vpc" "vpc" {
-  cidr_block = var.vpc_cidr
+resource "aws_vpc" "my_vpc" {
+  cidr_block       = "10.0.0.0/16"
+  enable_dns_hostnames = true
 
   tags = {
-    Name = var.name
-    Env  = var.env
+    Name = "My VPC"
   }
 }
 
-# This will be used by the public subnets
-resource "aws_internet_gateway" "ig" {
-  vpc_id = aws_vpc.vpc.id
+resource "aws_subnet" "public_us_east_1a" {
+  vpc_id     = aws_vpc.my_vpc.id
+  cidr_block = "10.0.0.0/24"
+  availability_zone = "us-east-1a"
 
   tags = {
-    Name = "${var.name}-igw"
-    Env  = var.env
+    Name = "Public Subnet us-east-1a"
   }
 }
 
-# elastic ip for the nat gateway
-resource "aws_eip" "nat_eip" {
-  vpc        = true
-  depends_on = [aws_internet_gateway.ig]
-}
+resource "aws_subnet" "public_us_east_1b" {
+  vpc_id     = aws_vpc.my_vpc.id
+  cidr_block = "10.0.1.0/24"
+  availability_zone = "us-east-1b"
 
-# Nat gateway for the private subnets
-resource "aws_nat_gateway" "nat" {
-  allocation_id = aws_eip.nat_eip.id
-  subnet_id     = element(aws_subnet.public.*.id, 0)
-  depends_on    = [aws_internet_gateway.ig]
   tags = {
-    Name = "${var.name}-nat"
-    Env  = var.env
+    Name = "Public Subnet us-east-1b"
   }
 }
 
-# Public subnet
-resource "aws_subnet" "public" {
-  vpc_id                  = aws_vpc.vpc.id
-  count                   = length(var.public_subnets_cidr)
-  cidr_block              = element(var.public_subnets_cidr, count.index)
-  availability_zone       = element(var.availability_zones, count.index)
-  map_public_ip_on_launch = true
+resource "aws_internet_gateway" "my_vpc_igw" {
+  vpc_id = aws_vpc.my_vpc.id
 
   tags = {
-    Name = "${var.env}-${element(var.availability_zones, count.index)}-public"
-    Env  = var.env
+    Name = "My VPC - Internet Gateway"
   }
+  
+  
+  
 }
 
-# Private subnets
-resource "aws_subnet" "private" {
-  vpc_id                  = aws_vpc.vpc.id
-  count                   = length(var.private_subnets_cidr)
-  cidr_block              = element(var.private_subnets_cidr, count.index)
-  availability_zone       = element(var.availability_zones, count.index)
-  map_public_ip_on_launch = false
+resource "aws_route_table" "my_vpc_public" {
+    vpc_id = aws_vpc.my_vpc.id
 
-  tags = {
-    Name = "${var.env}-${element(var.availability_zones, count.index)}-private"
-    Env  = var.env
-  }
+    route {
+        cidr_block = "0.0.0.0/0"
+        gateway_id = aws_internet_gateway.my_vpc_igw.id
+    }
+
+    tags = {
+        Name = "Public Subnets Route Table for My VPC"
+    }
 }
 
-# Private subnets route table
-resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.vpc.id
-
-  tags = {
-    Name        = "${var.name}-private-route-table"
-    Environment = var.env
-  }
+resource "aws_route_table_association" "my_vpc_us_east_1a_public" {
+    subnet_id = aws_subnet.public_us_east_1a.id
+    route_table_id = aws_route_table.my_vpc_public.id
 }
 
-# Public subnets route table
-resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.vpc.id
-
-  tags = {
-    Name        = "${var.name}-public-route-table"
-    Environment = var.env
-  }
+resource "aws_route_table_association" "my_vpc_us_east_1b_public" {
+    subnet_id = aws_subnet.public_us_east_1b.id
+    route_table_id = aws_route_table.my_vpc_public.id
 }
 
-# Add route for public route table to internet gateway
-resource "aws_route" "public_internet_gateway" {
-  route_table_id         = aws_route_table.public.id
-  destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_internet_gateway.ig.id
-}
-
-# Add route for private route table to nat gateway
-resource "aws_route" "private_nat_gateway" {
-  route_table_id         = aws_route_table.private.id
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.nat.id
-}
-
-# Associate the public route table to public subnets
-resource "aws_route_table_association" "public" {
-  count          = length(var.public_subnets_cidr)
-  subnet_id      = element(aws_subnet.public.*.id, count.index)
-  route_table_id = aws_route_table.public.id
-}
-
-# Associate the public route table to public subnets
-resource "aws_route_table_association" "private" {
-  count          = length(var.private_subnets_cidr)
-  subnet_id      = element(aws_subnet.private.*.id, count.index)
-  route_table_id = aws_route_table.private.id
-}
-
-# Create a ghost_asg_sg security for the vpc
 resource "aws_security_group" "ghost_asg_sg" {
-  name        = "${var.name}-default-sg"
-  description = "Default security group to allow inbound/outbound from the VPC"
-  vpc_id      = aws_vpc.vpc.id
-  depends_on  = [aws_vpc.vpc]
+  name        = "allow_http"
+  description = "Allow HTTP inbound connections"
+  vpc_id = aws_vpc.my_vpc.id
 
   ingress {
-    from_port = "0"
-    to_port   = "0"
-    protocol  = "-1"
-    self      = true
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
-    from_port = "0"
-    to_port   = "0"
-    protocol  = "-1"
-    self      = "true"
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
   }
+
   tags = {
-    Env = var.env
+    Name = "Allow HTTP Security Group"
   }
-}
