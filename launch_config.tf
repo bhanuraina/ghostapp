@@ -4,6 +4,7 @@ resource "aws_launch_configuration" "ghost_lc" {
   security_groups      = [aws_security_group.ghost_asg_sg.id]
   instance_type        = var.ec2_instance_type
   iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
+  associate_public_ip_address = true
   #  path to the user data file
   user_data = templatefile("./user_script/ghost_init.sh",
     {
