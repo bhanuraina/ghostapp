@@ -12,7 +12,7 @@ Subnets span across multiple availibity zones for High availablity.
 
 ### Traffic flow :
 
-Request lands on DNS for the Elastic Load Balancer and routed to listners as Ec2 instances.
+Request lands on DNS for the Elastic Load Balancer and routed to listeners as Ec2 instances.
 
 The Ghost is installed on Ec2 while creation with help of userdata scripts.
 
