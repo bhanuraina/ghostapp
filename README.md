@@ -18,4 +18,24 @@ The Ghost is installed on Ec2 while creation with help of userdata scripts.
 
 Nginx proxy re route the traffic to ghost application.
 
+### Prerequisites:
 
+* Terrform
+* AWS Cli
+* NPM
+* Ghost
+* NodeJs
+* Git
+
+### Procedure
+
+The Terraform workflow is automated using GitHUb Workflow Actions
+
+The action run follwing workflow
+
+* Terrform init.
+* Terraform validate.
+* Terraform vulernabilty scan. 
+* Terraform plan.
+* Terraform apply.
+ 
