@@ -23,5 +23,4 @@ resource "aws_dynamodb_table" "lock" {
     enabled = true
   }
 
-  tags = var.tags
 }
