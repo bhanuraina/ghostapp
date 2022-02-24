@@ -58,7 +58,7 @@ resource "aws_s3_bucket" "state" {
   bucket        = var.override_s3_bucket_name ? var.s3_bucket_name : null
   force_destroy = var.s3_bucket_force_destroy
 
-  tags = var.tags
+  tags {}
 }
 
 resource "aws_s3_bucket_acl" "state" {
