@@ -5,7 +5,7 @@ resource "aws_launch_configuration" "ghost_lc" {
   instance_type        = var.ec2_instance_type
   iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
   associate_public_ip_address = true
-  key_name = "cloud_user"
+  key_name = "ghost"
   #  path to the user data file
   user_data = templatefile("./user_script/ghost_init.sh",
     {
