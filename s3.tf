@@ -14,7 +14,7 @@ resource "aws_kms_key" "this" {
   deletion_window_in_days = var.kms_key_deletion_window_in_days
   enable_key_rotation     = var.kms_key_enable_key_rotation
 
-  tags = var.tags
+  tags {}
 }
 
 #---------------------------------------------------------------------------------------------------
