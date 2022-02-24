@@ -13,7 +13,7 @@ resource "aws_db_instance" "default" {
   db_subnet_group_name = aws_db_subnet_group.default.id
 }
 resource "aws_db_subnet_group" "default" {
-  name       = "main"
+  name       = "ghost_db"
   subnet_ids = [aws_subnet.public_us_east_1a.id, aws_subnet.public_us_east_1b.id]
 
   tags = {
