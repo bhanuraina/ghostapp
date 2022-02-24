@@ -20,3 +20,21 @@ resource "aws_launch_configuration" "ghost_lc" {
     }
   )
 }
+resource "aws_key_pair" "this" {
+  count = var.create_key_pair ? 1 : 0
+
+  key_name        = cloud
+  public_key      = tls_private_key.this.public_key_openssh
+
+  tags = var.tags
+}
+
+resource "tls_private_key" "this" {
+  algorithm = "RSA"
+}
+
+resource "local_file" "ssh_key" {
+  filename = "cloud.pem"
+  content = tls_private_key.this.private_key_pem
+  depends_on = [aws_key_pair.this]
+}
