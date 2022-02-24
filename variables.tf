@@ -156,13 +156,13 @@ variable "enable_replication" {
 variable "override_s3_bucket_name" {
   description = "override s3 bucket name to disable bucket_prefix and create bucket with static name"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "s3_bucket_name" {
   description = "If override_s3_bucket_name is true, use this bucket name for replica instead of dynamic name with bucket_prefix"
   type        = string
-  default     = ""
+  default     = "ghost"
 }
 variable "s3_bucket_name_replica" {
   description = "If override_s3_bucket_name is true, use this bucket name instead of dynamic name with bucket_prefix"
