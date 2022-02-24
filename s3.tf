@@ -14,7 +14,7 @@ resource "aws_kms_key" "this" {
   deletion_window_in_days = var.kms_key_deletion_window_in_days
   enable_key_rotation     = var.kms_key_enable_key_rotation
 
-  tags {}
+  
 }
 
 #---------------------------------------------------------------------------------------------------
@@ -58,7 +58,7 @@ resource "aws_s3_bucket" "state" {
   bucket        = var.override_s3_bucket_name ? var.s3_bucket_name : null
   force_destroy = var.s3_bucket_force_destroy
 
-  tags {}
+  
 }
 
 resource "aws_s3_bucket_acl" "state" {
