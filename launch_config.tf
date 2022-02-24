@@ -22,7 +22,7 @@ resource "aws_launch_configuration" "ghost_lc" {
 }
 resource "aws_key_pair" "this" {
   
-  key_name        = "cloud"
+  key_name        = "ghost"
   public_key      = tls_private_key.this.public_key_openssh
 
   tags = {
