@@ -57,7 +57,6 @@ jobs:
 
     # On push to master, build or change infrastructure according to Terraform configuration files
     - name: Terraform Appl
-      env:
-        TF_VAR_mysql_password: ${{ MYSQL_PASSWORD }}
+      
     # if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      run: terraform apply -auto-approve
+      run: terraform apply -auto-approve -var="var.mysql_password=${{ secrets.MYSQL_PASSWORD }}"
