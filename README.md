@@ -34,14 +34,19 @@ Nginx proxy re route the traffic to ghost application.
 
 ## Features
 
-- Create a S3 bucket to store remote state files. 
-- Encrypt state files with KMS.
-- Create a DynamoDB table for state locking.
 - Create ELB
 - Create Launch COnfiguration for Autoscaling
 - Create Autoscaling group
 - Create VPC and subnets
 - Create Key pair  
+
+## Exclusions
+
+- Create a S3 bucket to store remote state files. 
+- Encrypt state files with KMS.
+- Create a DynamoDB table for state locking
+
+Reason: Local state is being used for demo purposes.
 
 ## Providers
 
