@@ -18,7 +18,10 @@ exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
 
     # Install Ghost-CLI
     npm install ghost-cli@latest -g
-
+    
+    # Restart Nginx
+    sudo systemctl restart nginx 
+    
     # Give permission to ubuntu user, create directory 
     chown -R ubuntu:ubuntu /var/www/
     sudo -u ubuntu mkdir -p /var/www/blog && cd /var/www/blog
