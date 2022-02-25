@@ -21,7 +21,7 @@ default = "t3.micro"
 }
 
 variable "mysql_password" {
-default = "Ghost#1234"
+default = {{MYSQL_PASSWORD}}
 }
 
 #---------------------------------------------------------------------------------------------------
