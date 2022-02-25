@@ -67,13 +67,13 @@ Nginx proxy re route the traffic to ghost application.
 
 ### Procedure
 
-The Terraform workflow is automated using GitHUb Workflow Actions
+The Terraform workflow is automated using GitHUb Workflow Actions in Hosted Runner for demo purposes(Selfhosted is recommened).
 
 The action run follwing workflow
 
 * Terrform init.
 * Terraform validate.
-* Terraform vulernabilty scan. 
+* Terraform vulernabilty scan. (Not Inculed , normally terrascan/Checkov etc)
 * Terraform plan.
 * Terraform apply.
  
