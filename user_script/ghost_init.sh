@@ -8,7 +8,7 @@ exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
 
     # Install Nginx
     apt-get install -y nginx 
-    sudo sed -i 's/server_names_hash_bucket_size 64/server_names_hash_bucket_size 128/g' /etc/nginx/nginx.conf
+    sudo sed -i 's/#server_names_hash_bucket_size 64/server_names_hash_bucket_size 128/g' /etc/nginx/nginx.conf
     # Add the NodeSource APT repository for Node 12
     curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash
 
