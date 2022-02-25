@@ -2,7 +2,7 @@
 # DynamoDB Table for State Locking
 #---------------------------------------------------------------------------------------------------
 
-locals {
+/*locals {
   # The table must have a primary key named LockID.
   # See below for more detail.
   # https://www.terraform.io/docs/backends/types/s3.html#dynamodb_table
@@ -23,4 +23,4 @@ resource "aws_dynamodb_table" "lock" {
     enabled = true
   }
 
-}
+}*/
