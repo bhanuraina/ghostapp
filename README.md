@@ -5,6 +5,11 @@ Nordcloud Assignment
 
 ![image](https://user-images.githubusercontent.com/26302748/155410974-884c8907-803f-41c3-9f1c-78ca631123f3.png)
 
+#### Landscape
+
+![image](https://user-images.githubusercontent.com/26302748/155727391-0ab5b436-fb73-4bb8-a57d-7af4bd4d724b.png)
+
+
 ## Summary:
 
 The Ghost app is hosted on Ec2 instances within autoscaling launch configuration in subnets in VPC.
