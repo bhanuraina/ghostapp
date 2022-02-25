@@ -60,10 +60,11 @@ Nginx proxy re route the traffic to ghost application.
 | <a name="mysql_username"></a>mysql_username| RDS Master username. | `string` | yes |
 
 ## Inputs
-|
+
 | Name | Description |
 |------|-------------|
-| <a name="website_url"></a> website_url | Ghost web url. | DNS details for the ELB created.|
+| <a name="elb_dns_name"></a> elb_dns_name | Ghost web url. | DNS details for the ELB created.|
+
 ### Procedure
 
 The Terraform workflow is automated using GitHUb Workflow Actions
