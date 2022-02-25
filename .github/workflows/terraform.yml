@@ -41,6 +41,7 @@ jobs:
           aws-region: us-east-1
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          MYSQL_PASSWORD: ${{MYSQL_PASSWORD}}
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
@@ -56,5 +57,5 @@ jobs:
 
     # On push to master, build or change infrastructure according to Terraform configuration files
     - name: Terraform Appl
-     # if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      run: terraform apply -auto-approve -var="mysql_password=${{MYSQL_PASSWORD}}
+    # if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+      run: terraform apply -auto-approve -var="mysql_password=MYSQL_PASSWORD
