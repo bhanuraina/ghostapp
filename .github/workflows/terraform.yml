@@ -59,4 +59,4 @@ jobs:
     - name: Terraform Appl
       
     # if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      run: terraform apply -auto-approve -var="var.mysql_password=${{ secrets.MYSQL_PASSWORD }}"
+      run: terraform apply -auto-approve -var="mysql_password=${{ secrets.MYSQL_PASSWORD }}"
