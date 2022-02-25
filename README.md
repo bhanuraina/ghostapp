@@ -32,6 +32,34 @@ Nginx proxy re route the traffic to ghost application.
 * NodeJs
 * Git
 
+## Features
+
+- Create a S3 bucket to store remote state files. 
+- Encrypt state files with KMS.
+- Create a DynamoDB table for state locking.
+- Create ELB
+- Create Launch COnfiguration for Autoscaling
+- Create Autoscaling group
+- Create VPC and subnets
+- Create Key pair  
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.2.0 |
+| <a name="provider_aws.replica"></a> [aws.replica](#provider\_aws.replica) | >= 4.2.0 |
+
+## Inputs
+
+| Name | Description | Type | Required |
+|------|-------------|------|:--------:|
+| <a name="website_url"></a> website_url | Ghost web url. | `string` | no |
+| <a name="website_admin_url"></a>website_admin_url| Ghost web Admin url. | `string` | no |
+| <a name="mysql_password"></a> mysql_password | RDS Master password. | `string` | no |
+| <a name="mysql_username"></a>mysql_username| RDS Master username. | `string` | no |
+
+
 ### Procedure
 
 The Terraform workflow is automated using GitHUb Workflow Actions
