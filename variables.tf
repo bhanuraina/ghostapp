@@ -10,7 +10,7 @@ variable "website_admin_url" {
 
 variable "region" {
   type    = string
-  default = "eu-west-3"
+  default = "us-east-1"
 }
 
 variable "ec2_instance_type" {
