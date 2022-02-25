@@ -3,11 +3,11 @@ provider "aws" {
 }
 terraform {
   backend "s3" {
-    bucket         = var.s3_bucket_name
-    key            = var.s3_bucket_name
-    region         = var.region
+    bucket         = aws_s3_bucket.sate.id
+    key            = aws_s3_bucket.sate.id
+    region         = us-east-1
     encrypt        = true
     kms_key_id     = aws_kms_key.this.arn
-    dynamodb_table = var.dynamodb_table_name
+    dynamodb_table = aws_dynamodb_table.lock.id
   }
 }
