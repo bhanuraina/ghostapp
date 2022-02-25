@@ -59,7 +59,7 @@ Nginx proxy re route the traffic to ghost application.
 | <a name="mysql_password"></a> mysql_password | RDS Master password. | `string` | yes |
 | <a name="mysql_username"></a>mysql_username| RDS Master username. | `string` | yes |
 
-## Inputs
+## Outputs
 
 | Name | Description |
 |------|-------------|
