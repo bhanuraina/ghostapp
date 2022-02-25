@@ -1,7 +1,7 @@
 provider "aws" {
   region = var.region
 }
-terraform {
+/*terraform {
   backend "s3" {
     bucket         = "ghostss11445566"
     key            = "ghostss11445566"
@@ -10,3 +10,4 @@ terraform {
     dynamodb_table = "tf-remote-state-lock"
   }
 }
+*/
