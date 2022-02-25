@@ -56,8 +56,8 @@ Nginx proxy re route the traffic to ghost application.
 |------|-------------|------|:--------:|
 | <a name="website_url"></a> website_url | Ghost web url. | `string` | no |
 | <a name="website_admin_url"></a>website_admin_url| Ghost web Admin url. | `string` | no |
-| <a name="mysql_password"></a> mysql_password | RDS Master password. | `string` | no |
-| <a name="mysql_username"></a>mysql_username| RDS Master username. | `string` | no |
+| <a name="mysql_password"></a> mysql_password | RDS Master password. | `string` | yes |
+| <a name="mysql_username"></a>mysql_username| RDS Master username. | `string` | yes |
 
 
 ### Procedure
