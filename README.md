@@ -77,6 +77,18 @@ Reason: Local state is being used for demo purposes.
 
 The Terraform workflow is automated using GitHUb Workflow Actions in Hosted Runner for demo purposes(Selfhosted is recommened).
 
+Update lastest secrets in github secrets:
+
+| Secrets                                         |
+|-------------------------------------------------|
+|  <a name="secret1"></a> AWS_ACCESS_KEY_ID       |
+|  <a name="secret2"></a> AWS_SECRET_ACCESS_KEY   |
+|  <a name="secret3"></a> MYSQL_PASSWORD          |
+
+![image](https://user-images.githubusercontent.com/26302748/155989637-eec9f215-2bd2-4f73-80b1-e92ce7b10eac.png)
+
+![Uploading image.png…]()
+
 The action run follwing workflow
 
 * Terrform init.
