@@ -1,5 +1,5 @@
-resource "aws_iam_role" "iam_for_lambda" {
-  name = "iam_for_lambda"
+resource "aws_iam_role" "iam_for_ghost_lambda" {
+  name = "iam_for_ghost_lambda"
 
   assume_role_policy = <<EOF
 {
@@ -18,22 +18,19 @@ resource "aws_iam_role" "iam_for_lambda" {
 EOF
 }
 
-resource "aws_lambda_function" "test_lambda" {
-  filename      = "lambda_function_payload.zip"
-  function_name = "lambda_function_name"
+resource "aws_lambda_function" "ghost_lambda" {
+  filename      = "delete_post-a13f3829-2554-49c2-ae71-84915b4b8201.zip"
+  function_name = "delete_all_posts_ghosts"
   role          = aws_iam_role.iam_for_lambda.arn
-  handler       = "index.test"
+  handler       = "lambda_function.lambda_handler"
 
-  # The filebase64sha256() function is available in Terraform 0.11.12 and later
-  # For Terraform 0.11.11 and earlier, use the base64sha256() function and the file() function:
-  # source_code_hash = "${base64sha256(file("lambda_function_payload.zip"))}"
-  source_code_hash = filebase64sha256("lambda_function_payload.zip")
+  source_code_hash = filebase64sha256("delete_post-a13f3829-2554-49c2-ae71-84915b4b8201.zip")
 
-  runtime = "nodejs12.x"
+  runtime = "python3.8"
 
   environment {
     variables = {
-      foo = "bar"
+      Name  = "ghost"
     }
   }
 }
