@@ -19,7 +19,7 @@ EOF
 }
 
 resource "aws_lambda_function" "ghost_lambda" {
-  filename      = "delete_post-a13f3829-2554-49c2-ae71-84915b4b8201.zip"
+  filename      = "ghost_lambda.zip"
   function_name = "delete_all_posts_ghosts"
   role          = aws_iam_role.iam_for_ghost_lambda.arn
   handler       = "lambda_function.lambda_handler"
@@ -39,10 +39,10 @@ resource "aws_lambda_function" "ghost_lambda" {
   environment {
     variables = {
       Name  = "ghost"
-      "Host"     = "database-1.cobxo3snknwp.eu-central-1.rds.amazonaws.com"
-      "dbname"   = "mydb"
-      "password" = "Ghost#1234"
-       "username" = "ghostadmin"
+      Host     = "database-1.cobxo3snknwp.eu-central-1.rds.amazonaws.com"
+      dbname   = "mydb"
+      username             = var.mysql_username
+      password             = var.mysql_password
     }
   }
 }
