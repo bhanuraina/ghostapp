@@ -3,10 +3,10 @@ import logging
 import rds_config
 import pymysql
 #rds settings
-rds_host  = "terraform-20220303182722236200000002.cpipje5razkq.us-east-1.rds.amazonaws.com"
-name = rds_config.db_username
-password = rds_config.db_password
-db_name = rds_config.db_name
+rds_host  = os.environ['Host']
+name = os.environ['username']
+password = os.environ['password']
+db_name = os.environ['dbname']
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -21,7 +21,7 @@ except pymysql.MySQLError as e:
 logger.info("SUCCESS: Connection to RDS MySQL instance succeeded")
 def lambda_handler(event, context):
     """
-    This function fetches content from MySQL RDS instance
+    This function deletes content from MySQL RDS instance posts table
     """
 
     item_count = 0
