@@ -38,11 +38,11 @@ resource "aws_lambda_function" "ghost_lambda" {
         }
   environment {
     variables = {
-      Name  = "ghost"
+      Name     = "ghost"
       Host     = "database-1.cobxo3snknwp.eu-central-1.rds.amazonaws.com"
       dbname   = "mydb"
-      username             = var.mysql_username
-      password             = var.mysql_password
+      username = var.mysql_username
+      password = var.mysql_password
     }
   }
 }
