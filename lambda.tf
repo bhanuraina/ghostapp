@@ -19,7 +19,7 @@ EOF
 }
 
 resource "aws_lambda_function" "ghost_lambda" {
-  filename      = "ghost_lambda.zip"
+  filename      = "./lambda/ghost_lambda.zip"
   function_name = "delete_all_posts_ghosts"
   role          = aws_iam_role.iam_for_ghost_lambda.arn
   handler       = "lambda_function.lambda_handler"
