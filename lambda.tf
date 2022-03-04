@@ -40,7 +40,7 @@ resource "aws_lambda_function" "ghost_lambda" {
     variables = {
       Name     = "ghost"
       Host     = aws_db_instance.default.endpoint
-      dbname   = "mydb"
+      dbname   = var.mysql_dbname
       username = var.mysql_username
       password = var.mysql_password
     }
