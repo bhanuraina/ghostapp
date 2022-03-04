@@ -39,6 +39,10 @@ resource "aws_lambda_function" "ghost_lambda" {
   environment {
     variables = {
       Name  = "ghost"
+      "Host"     = "database-1.cobxo3snknwp.eu-central-1.rds.amazonaws.com"
+      "dbname"   = "mydb"
+      "password" = "Ghost#1234"
+       "username" = "ghostadmin"
     }
   }
 }
