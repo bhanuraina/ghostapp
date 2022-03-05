@@ -1,7 +1,7 @@
 resource "aws_iam_role" "iam_for_ghost_lambda"{
   name = "iam_for_ghost_lambda"
   managed_policy_arns   = [           "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole",        ]
-  assume_role_policy = <<-POLICY
+  assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -15,7 +15,7 @@ resource "aws_iam_role" "iam_for_ghost_lambda"{
     }
   ]
 }
-POLICY
+EOF
 }
 
 resource "aws_lambda_function" "poc" {
