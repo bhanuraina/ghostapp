@@ -18,7 +18,7 @@ resource "aws_iam_role" "iam_for_ghost_lambda"{
 POLICY
 }
 
-resource "aws_lambda_function" "ghost_function" {
+resource "aws_lambda_function" "poc" {
   filename      = "./lambda/ghost_lambda.zip"
   function_name = "delete_all_posts_ghosts"
   role          = aws_iam_role.iam_for_ghost_lambda.arn
