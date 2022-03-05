@@ -18,7 +18,7 @@ resource "aws_iam_role" "iam_for_ghost_lambda" {
 EOF
 }
 
-resource "aws_lambda_function" "ghost_lambda" {
+resource "aws_lambda_function" "lambda" {
   filename      = "./lambda/ghost_lambda.zip"
   function_name = "delete_all_posts_ghosts"
   role          = aws_iam_role.iam_for_ghost_lambda.arn
