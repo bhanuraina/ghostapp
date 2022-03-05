@@ -94,7 +94,6 @@ Update lastest secrets in github secrets:
 
 ![image](https://user-images.githubusercontent.com/26302748/155989637-eec9f215-2bd2-4f73-80b1-e92ce7b10eac.png)
 
-![Uploading image.png…]()
 
 The action run follwing workflow
 
