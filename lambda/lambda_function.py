@@ -2,6 +2,7 @@ import sys
 import logging
 import rds_config
 import pymysql
+import os
 #rds settings
 rds_host  = os.environ['Host']
 name = os.environ['username']
