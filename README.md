@@ -42,6 +42,7 @@ Nginx proxy re route the traffic to ghost application.
 - Create Autoscaling group
 - Create VPC and subnets
 - Create Key pair  
+- Lambda function to delete all posts.
 
 ## Exclusions
 
