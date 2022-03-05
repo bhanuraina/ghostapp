@@ -10,7 +10,8 @@ Nordcloud Assignment
 
 #### Landscape
 
-![image](https://user-images.githubusercontent.com/26302748/155727391-0ab5b436-fb73-4bb8-a57d-7af4bd4d724b.png)
+![image](https://user-images.githubusercontent.com/26302748/156876377-2027ac17-d704-49e4-9640-e0e69d453ca3.png)
+
 
 
 ## Summary:
@@ -49,6 +50,7 @@ Nginx proxy re route the traffic to ghost application.
 - Create a S3 bucket to store remote state files. 
 - Encrypt state files with KMS.
 - Create a DynamoDB table for state locking
+- Trigger lambda (API GW,ALB etc)
 
 Reason: Local state is being used for demo purposes.
 
