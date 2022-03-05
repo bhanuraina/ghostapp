@@ -80,6 +80,10 @@ Reason: Local state is being used for demo purposes.
 
 The Terraform workflow is automated using GitHUb Workflow Actions in Hosted Runner for demo purposes(Selfhosted is recommened).
 
+Lambda package is uploaded ro "lambda" folder as zip file.
+
+Python code will use PYMSQL and Crypto to login to database and execute query.
+
 Update lastest secrets in github secrets:
 
 | Secrets                                         |
